@@ -30,6 +30,6 @@ tolerations:
     operator: Exists
 
 node_selector_enabled: false
-node_selector:
+node_selector_defaults:
   feature.node.kubernetes.io/pci-0300_1002.present: "true"
   kubernetes.io/arch: amd64
