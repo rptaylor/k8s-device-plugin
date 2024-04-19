@@ -15,8 +15,15 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.node_selector_enabled }}
+      {{- if .Values.node_selector }}
+      # node_selector
       {{- with .Values.node_selector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- else }}
+      # node_selector_defaults
+      {{- with .Values.node_selector_defaults }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
