@@ -34,12 +34,10 @@ spec:
       labels:
         name: amdgpu-lr-ds
     spec:
-      {{- if .Values.node_selector_enabled }}
-      {{- with .Values.node_selector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- end }}
+      nodeSelector: |-
+        {{- range $.Values.node_selector }}
+        {{- . | toYaml | nindent 8 }}
+        {{- end }}
       priorityClassName: system-node-critical
       {{- with .Values.tolerations }}
       tolerations:
