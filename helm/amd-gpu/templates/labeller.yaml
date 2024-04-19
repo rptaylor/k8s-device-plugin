@@ -34,8 +34,13 @@ spec:
       labels:
         name: amdgpu-lr-ds
     spec:
-      {{- if .Values.node_selector_enabled }}
+      {{- if .Values.node_selector }}
       {{- with .Values.node_selector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- else }}
+      {{- with .Values.node_selector_defaults }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
