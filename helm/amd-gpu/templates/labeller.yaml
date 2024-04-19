@@ -36,7 +36,7 @@ spec:
     spec:
       nodeSelector: |-
         {{- range $.Values.node_selector }}
-        {{- . | toYaml | nindent 8 }}
+        {{- . | fromYaml | nindent 8 }}
         {{- end }}
       priorityClassName: system-node-critical
       {{- with .Values.tolerations }}
